@@ -3,13 +3,14 @@ import { Switch, Redirect } from 'react-router-dom'
 
 import RouteWithLayout from './routes/routeWithLayout'
 import { MainLayout, MinimalLayout } from './layouts'
-import { Dashboard, Login, NotFound } from './views'
+import { Dashboard, AuthForm, NotFound } from './views'
 
-const Routes = () => {
+// TODO: Redirect should be done from BE
+const Routes = (props) => {
   return (
     <Switch>
       <Redirect exact from="/" to="/login" />
-      <RouteWithLayout path="/login" layout={MinimalLayout} component={Login} exact />
+      <RouteWithLayout path="/login" layout={MinimalLayout} component={AuthForm} exact />
       <RouteWithLayout path="/dashboard" layout={MainLayout} component={Dashboard} exact />
       <RouteWithLayout path="/not-found" layout={MinimalLayout} component={NotFound} exact />
       <Redirect to="/not-found" />
