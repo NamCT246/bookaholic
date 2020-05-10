@@ -3,6 +3,7 @@ import React from 'react'
 import AppContext from './context/app'
 import UserContext from './context/user'
 
+// * Should get rendered by element order
 const contextProviders = [AppContext, UserContext]
 
 const CombinedContext = ({ children }) => {

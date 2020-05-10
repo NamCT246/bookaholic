@@ -1,5 +1,4 @@
 import React, { useReducer, Suspense } from 'react'
-import { TextField, Button, FormControl } from '@material-ui/core'
 
 import Login from '../components/login'
 
@@ -8,8 +7,8 @@ const ForgotPassword = React.lazy(() => import('../components/forgotPassword'))
 
 const initialState = { component: Login, title: 'Login' }
 
-const reducer = (state, action) => {
-  switch (action.type) {
+const reducer = (state, form) => {
+  switch (form) {
     case 'signup':
       return { component: Signup, title: 'Signup' }
     case 'forgotPassword':

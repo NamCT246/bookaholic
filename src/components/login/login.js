@@ -1,11 +1,14 @@
 import React, { useRef, useEffect } from 'react'
 import { FormControl, TextField, Button } from '@material-ui/core'
 
+import { useRestAPI } from '../../hooks'
+
 const Login = ({ setForm }) => {
   const emailRef = useRef()
   const passwordRef = useRef()
+  const [{ loading }, sendRequest] = useRestAPI('https://jsonplaceholder.typicode.com/todos/1')
 
-  const handleLoginClick = (event) => {
+  const handleLoginClick = async (event) => {
     const email = emailRef.current.value
     const password = passwordRef.current.value
 
@@ -13,18 +16,12 @@ const Login = ({ setForm }) => {
       return
     }
 
-    // send the request
-    console.log(email, password)
-  }
-
-  const handleSetForm = (form) => {
-    console.log(form)
-    setForm({ type: form })
+    sendRequest()
   }
 
   return (
     <FormControl component="form">
-      <TextField required id="outlined-basic" label="Email" variant="outlined" inputRef={emailRef} />
+      <TextField required id="outlined-basic" label="Email" type="email" variant="outlined" inputRef={emailRef} />
       <TextField
         id="standard-password-input"
         required
@@ -34,18 +31,13 @@ const Login = ({ setForm }) => {
         variant="outlined"
         inputRef={passwordRef}
       />
-      <Button className="login" variant="contained" color="primary" onClick={handleLoginClick}>
+      <Button className="login" variant="contained" color="primary" onClick={handleLoginClick} disabled={loading}>
         Login
       </Button>
-      <Button className="signup" variant="contained" color="secondary" onClick={() => handleSetForm('signup')}>
+      <Button className="signup" variant="contained" color="secondary" onClick={() => setForm('signup')}>
         Signup
       </Button>
-      <Button
-        className="forgotPassword"
-        variant="contained"
-        color="default"
-        onClick={() => handleSetForm('forgotPassword')}
-      >
+      <Button className="forgotPassword" variant="contained" color="default" onClick={() => setForm('forgotPassword')}>
         ForgotPassword
       </Button>
     </FormControl>
