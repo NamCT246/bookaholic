@@ -18,21 +18,32 @@ const useRestAPI = (endpoint) => {
   const [responseState, responseApi] = useRestResponse()
   const { receiveError, receiveResponse, setLoading } = responseApi
 
-  const sendRequest = useCallback(async () => {
-    // setLoading to true before making the call.
-    // There is no need to setLoading to false after because
-    // both receiveResponse and receiveError handle that.
-    setLoading(true)
+  const sendRequest = useCallback(
+    async (options) => {
+      // setLoading to true before making the call.
+      // There is no need to setLoading to false after because
+      // both receiveResponse and receiveError handle that.
+      setLoading(true)
 
-    try {
-      const response = await window.fetch(endpoint)
-      receiveResponse(response)
-    } catch (error) {
-      receiveError(error)
-    }
-  }, [endpoint, receiveError, receiveResponse, setLoading])
+      try {
+        const response = await window.fetch(endpoint, { ...defaultFetchOptions, options })
+        receiveResponse(response)
+      } catch (error) {
+        receiveError(error)
+      }
+    },
+    [endpoint, receiveError, receiveResponse, setLoading]
+  )
 
-  return [responseState, sendRequest]
+  const api = useMemo(
+    () => ({
+      ...responseApi,
+      sendRequest,
+    }),
+    [receiveError, receiveResponse, setLoading, sendRequest]
+  )
+
+  return [responseState, api]
 }
 
 export default useRestAPI

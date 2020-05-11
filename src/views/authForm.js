@@ -1,9 +1,17 @@
 import React, { useReducer, Suspense } from 'react'
+import { makeStyles } from '@material-ui/styles'
 
 import Login from '../components/login'
 
 const Signup = React.lazy(() => import('../components/signup'))
 const ForgotPassword = React.lazy(() => import('../components/forgotPassword'))
+
+const useStyles = makeStyles((theme) => ({
+  root: {},
+  title: {
+    textAlign: 'center',
+  },
+}))
 
 const initialState = { component: Login, title: 'Login' }
 
@@ -18,15 +26,16 @@ const reducer = (state, form) => {
   }
 }
 
+// TODO: so this component should be moved to modal widget instead of view, as dispatching form name event doesn't trigger router change
 const AuthForm = (props) => {
-  const [form, setFormDispatcher] = useReducer(reducer, initialState)
-  const Form = form.component
+  const [{ component: Form, title }, setFormDispatcher] = useReducer(reducer, initialState)
+  const classes = useStyles()
 
   return (
-    <div>
-      <p>{form.title}</p>
+    <div className={classes.root}>
+      <p className={classes.title}>{title}</p>
       <Suspense fallback={<div>Loading...</div>}>
-        <Form setForm={setFormDispatcher} />
+        <Form setForm={setFormDispatcher} currentForm={title} />
       </Suspense>
     </div>
   )
