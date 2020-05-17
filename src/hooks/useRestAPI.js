@@ -40,7 +40,7 @@ const useRestAPI = (endpoint) => {
       ...responseApi,
       sendRequest,
     }),
-    [receiveError, receiveResponse, setLoading, sendRequest]
+    [responseApi, sendRequest]
   )
 
   return [responseState, api]
