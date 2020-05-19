@@ -8,4 +8,8 @@ export default {
     link: colors.blue[600],
   },
   hover: { primary: colors.blue[900] },
+  background: {
+    default: '#F4F6F8',
+    paper: '#FFF',
+  },
 }

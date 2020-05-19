@@ -9,7 +9,7 @@ import { Dashboard, Login, Signup, ForgotPassword, NotFound } from './views'
 const Routes = (props) => {
   return (
     <Switch>
-      <Redirect exact from="/" to="/login" />
+      <Redirect exact from="/" to="/dashboard" />
       <RouteWithLayout path="/login" layout={MinimalLayout} component={Login} exact />
       <RouteWithLayout path="/sign-up" layout={MinimalLayout} component={Signup} exact />
       <RouteWithLayout path="/forgot-password" layout={MinimalLayout} component={ForgotPassword} exact />
