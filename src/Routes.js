@@ -9,11 +9,11 @@ import { Dashboard, Login, Signup, ForgotPassword, NotFound } from './views'
 const Routes = (props) => {
   return (
     <Switch>
-      <Redirect exact from="/" to="/dashboard" />
+      <Redirect exact from="/" to="/home" />
       <RouteWithLayout path="/login" layout={MinimalLayout} component={Login} exact />
       <RouteWithLayout path="/sign-up" layout={MinimalLayout} component={Signup} exact />
       <RouteWithLayout path="/forgot-password" layout={MinimalLayout} component={ForgotPassword} exact />
-      <RouteWithLayout path="/dashboard" layout={MainLayout} component={Dashboard} exact />
+      <RouteWithLayout path="/home" layout={MainLayout} component={Dashboard} exact />
       <RouteWithLayout path="/not-found" layout={MinimalLayout} component={NotFound} exact />
       <Redirect to="/not-found" />
     </Switch>

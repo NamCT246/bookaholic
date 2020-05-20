@@ -6,6 +6,7 @@ export default {
     primary: colors.blueGrey[900],
     secondary: colors.blueGrey[600],
     link: colors.blue[600],
+    info: colors.grey[500],
   },
   hover: { primary: colors.blue[900] },
   background: {

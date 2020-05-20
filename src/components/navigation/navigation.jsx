@@ -29,6 +29,7 @@ import { useDropdown } from '../../hooks'
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
+    height: '75px',
   },
   left: {
     display: 'flex',

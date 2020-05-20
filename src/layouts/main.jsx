@@ -1,16 +1,13 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/styles'
 
-import { Navigation } from '../components/navigation'
+import { Navigation as TopNavigation } from '../components/navigation'
 
 const useStyles = makeStyles((theme) => ({
   root: {
     height: '100%',
   },
   main: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
     height: '100%',
   },
 }))
@@ -20,7 +17,7 @@ const MainLayout = ({ children }) => {
 
   return (
     <div className={classes.root}>
-      <Navigation />
+      <TopNavigation />
       <main className={classes.main}>{children}</main>
     </div>
   )
