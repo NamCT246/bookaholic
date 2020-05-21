@@ -98,7 +98,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     position: 'absolute',
-    top: '60px',
+    top: '55px',
     right: 0,
     width: '150px',
     background: fade(theme.palette.background.default, 0.15),
