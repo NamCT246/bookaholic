@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { makeStyles } from '@material-ui/styles'
 import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
+import InputBase from '@material-ui/core/InputBase'
 import Divider from '@material-ui/core/Divider'
 import Avatar from '@material-ui/core/Avatar'
 import Button from '@material-ui/core/Button'
@@ -23,6 +24,7 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: theme.spacing(3),
     padding: theme.spacing(2),
     color: theme.palette.text.info,
+    flex: 1,
   },
 }))
 
@@ -40,10 +42,14 @@ const CreatePost = (props) => {
       <Typography>Create a post</Typography>
       <Divider />
       <Paper className={classes.postWrapper}>
-        <Avatar alt="Remy Sharp" src={user.avatar} className={classes.orange}>
+        <Avatar alt={user.name} src={user.avatar} className={classes.orange}>
           {getUsernameFirstLetter(user.name)}
         </Avatar>
-        <Typography className={classes.postTip}>Hey {user.name}, share a good book can change the world</Typography>
+        <InputBase
+          placeholder={`Hey ${user.name}, share a good book can change the world`}
+          inputProps={{ 'aria-label': 'post-description' }}
+          className={classes.postTip}
+        />
       </Paper>
       <Paper className={classes.postUtils}>
         <Button variant="contained" color="default" className={classes.button} startIcon={<ImageIcon />}>

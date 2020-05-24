@@ -8,9 +8,8 @@ import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemText from '@material-ui/core/ListItemText'
 import ListItemIcon from '@material-ui/core/ListItemIcon'
-import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction'
-import Checkbox from '@material-ui/core/Checkbox'
 import IconButton from '@material-ui/core/IconButton'
+import Button from '@material-ui/core/Button'
 import PublicIcon from '@material-ui/icons/Public'
 import GroupIcon from '@material-ui/icons/Group'
 import LockIcon from '@material-ui/icons/Lock'
@@ -56,6 +55,17 @@ const PrivacyDropdown = (props) => {
     // setDropdownOpen(false)
   }
 
+  const renderSelectedPrivacy = useMemo(() => {
+    return (
+      <Fragment>
+        <Typography>
+          {selectedPrivacy.icon}
+          {selectedPrivacy.type}
+        </Typography>
+      </Fragment>
+    )
+  }, [selectedPrivacy])
+
   const renderOptions = useMemo(() => {
     return (
       <Fragment>
@@ -77,15 +87,13 @@ const PrivacyDropdown = (props) => {
 
   return (
     <Paper ref={elementRef} className={classes.root}>
-      <IconButton
+      <Button
         className={clsx(classes.iconButton, classes.userIcon)}
         onClick={() => setDropdownOpen(!isDropdownOpen)}
         ref={elementRef}
-        color="inherit"
-        aria-label="button"
       >
-        {selectedPrivacy.icon}
-      </IconButton>
+        {renderSelectedPrivacy}
+      </Button>
       {isDropdownOpen ? renderOptions : null}
     </Paper>
   )
