@@ -10,21 +10,17 @@ import Typography from '@material-ui/core/Typography'
 import Paper from '@material-ui/core/Paper'
 import Button from '@material-ui/core/Button'
 import { Link as RouterLink } from 'react-router-dom'
-import clsx from 'clsx'
 
 import LibraryBooksIcon from '@material-ui/icons/LibraryBooks'
 import SearchIcon from '@material-ui/icons/Search'
 import ExploreIcon from '@material-ui/icons/Explore'
-import HelpIcon from '@material-ui/icons/Help'
-import AccountCircleSharpIcon from '@material-ui/icons/AccountCircleSharp'
 import HomeOutlinedIcon from '@material-ui/icons/HomeOutlined'
 import ModeCommentOutlinedIcon from '@material-ui/icons/ModeCommentOutlined'
 import HowToRegOutlinedIcon from '@material-ui/icons/HowToRegOutlined'
 import NotificationsNoneOutlinedIcon from '@material-ui/icons/NotificationsNoneOutlined'
 import BorderColorOutlinedIcon from '@material-ui/icons/BorderColorOutlined'
-import SettingsOutlinedIcon from '@material-ui/icons/SettingsOutlined'
 
-import { useDropdown } from '../../hooks'
+import UserProfileDropdown from './UserProfileDropdown'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -119,26 +115,6 @@ const useStyles = makeStyles((theme) => ({
 
 const Navigation = (props) => {
   const classes = useStyles()
-  const { elementRef, isDropdownOpen, setDropdownOpen } = useDropdown(false, 'click')
-
-  const handleUserClick = () => {
-    setDropdownOpen(!isDropdownOpen)
-  }
-
-  const renderUserDropdown = () => {
-    return (
-      <Paper variant="outlined" square className={classes.userDropdown}>
-        <Button className={classes.iconButton} color="inherit" aria-label="button">
-          <SettingsOutlinedIcon />
-          Settings
-        </Button>
-        <Button className={classes.iconButton} color="inherit" aria-label="button">
-          <HelpIcon />
-          Support
-        </Button>
-      </Paper>
-    )
-  }
 
   return (
     <div className={classes.root}>
@@ -163,36 +139,25 @@ const Navigation = (props) => {
             </div>
           </div>
           <div className={classes.right}>
-            <IconButton className={classes.iconButton} color="inherit" aria-label="button">
+            <IconButton color="inherit" aria-label="button">
               <HomeOutlinedIcon />
             </IconButton>
             <Divider orientation="vertical" flexItem />
-            <IconButton className={classes.iconButton} color="inherit" aria-label="button">
+            <IconButton color="inherit" aria-label="button">
               <NotificationsNoneOutlinedIcon />
             </IconButton>
-
-            <IconButton className={classes.iconButton} color="inherit" aria-label="button">
+            <IconButton color="inherit" aria-label="button">
               <ModeCommentOutlinedIcon />
             </IconButton>
-            <IconButton className={classes.iconButton} color="inherit" aria-label="button">
+            <IconButton color="inherit" aria-label="button">
               <HowToRegOutlinedIcon />
             </IconButton>
             <Divider orientation="vertical" flexItem />
-            <IconButton
-              className={clsx(classes.iconButton, classes.userIcon)}
-              onClick={handleUserClick}
-              ref={elementRef}
-              color="inherit"
-              aria-label="button"
-            >
-              <AccountCircleSharpIcon />
-              {isDropdownOpen ? renderUserDropdown() : null}
-            </IconButton>
-
-            <IconButton className={classes.iconButton} color="inherit" aria-label="button">
+            <UserProfileDropdown className={classes.UserProfileDropdown}></UserProfileDropdown>
+            <IconButton color="inherit" aria-label="button">
               <BorderColorOutlinedIcon />
             </IconButton>
-            <IconButton className={classes.iconButton} color="inherit" aria-label="button">
+            <IconButton color="inherit" aria-label="button">
               <ExploreIcon />
             </IconButton>
           </div>

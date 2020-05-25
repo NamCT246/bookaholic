@@ -18,7 +18,15 @@ const useStyles = makeStyles((theme) => ({
   },
   postWrapper: {
     display: 'flex',
-    padding: theme.spacing(6),
+    paddingTop: theme.spacing(5),
+  },
+  header: {
+    padding: theme.spacing(2),
+  },
+  postUtils: {
+    display: 'flex',
+    height: '36px',
+    marginTop: theme.spacing(4),
   },
   postTip: {
     marginLeft: theme.spacing(3),
@@ -30,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
 
 // TODO: Replace with fetch
 const user = {
-  name: 'nam',
+  name: 'Nam',
   avatar: '/images/cool.jpg',
 }
 
@@ -38,10 +46,10 @@ const CreatePost = (props) => {
   const classes = useStyles()
 
   return (
-    <Paper className={classes.root}>
-      <Typography>Create a post</Typography>
+    <Paper className={classes.root} elevation={2}>
+      <Typography className={classes.header}>Create a post</Typography>
       <Divider />
-      <Paper className={classes.postWrapper}>
+      <Paper className={classes.postWrapper} elevation={0}>
         <Avatar alt={user.name} src={user.avatar} className={classes.orange}>
           {getUsernameFirstLetter(user.name)}
         </Avatar>
@@ -51,7 +59,7 @@ const CreatePost = (props) => {
           className={classes.postTip}
         />
       </Paper>
-      <Paper className={classes.postUtils}>
+      <Paper className={classes.postUtils} elevation={0}>
         <Button variant="contained" color="default" className={classes.button} startIcon={<ImageIcon />}>
           Upload
         </Button>

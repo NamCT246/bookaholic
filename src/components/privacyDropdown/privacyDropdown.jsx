@@ -1,104 +1,57 @@
-import React, { useMemo, Fragment } from 'react'
-import PropTypes from 'prop-types'
-import clsx from 'clsx'
+import React from 'react'
 import { makeStyles } from '@material-ui/styles'
-import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
-import List from '@material-ui/core/List'
-import ListItem from '@material-ui/core/ListItem'
-import ListItemText from '@material-ui/core/ListItemText'
-import ListItemIcon from '@material-ui/core/ListItemIcon'
-import IconButton from '@material-ui/core/IconButton'
-import Button from '@material-ui/core/Button'
+
 import PublicIcon from '@material-ui/icons/Public'
 import GroupIcon from '@material-ui/icons/Group'
 import LockIcon from '@material-ui/icons/Lock'
-import CheckIcon from '@material-ui/icons/Check'
 
-import { useDropdown } from '../../hooks'
+import Dropdown from '../common/Dropdown'
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: 'inline-flex',
-    flexDirection: 'column',
+    marginLeft: 'auto',
+    background: 'red',
+  },
+  dropdownDisplay: {
+    marginLeft: 'auto',
   },
   listRoot: {
-    display: 'flex',
+    width: '240px',
+    right: 0,
   },
 }))
 
+// TODO: To be fetched
 const privacyList = [
   {
-    type: 'public',
+    type: 'Public',
     icon: <PublicIcon />,
   },
   {
-    type: 'friends',
+    type: 'Friends only',
     icon: <GroupIcon />,
   },
   {
-    type: 'myself',
+    type: 'Myself',
     icon: <LockIcon />,
   },
 ]
 
-const PrivacyDropdown = (props) => {
-  const { elementRef, isDropdownOpen, setDropdownOpen } = useDropdown(false, 'click')
-  const [selectedPrivacy, setSelectedPrivacy] = React.useState({
-    type: 'public',
-    icon: <PublicIcon />,
-  })
+const PrivacyDropdown = () => {
   const classes = useStyles()
 
-  const handleItemClick = (item) => {
-    setSelectedPrivacy(item)
-    // setDropdownOpen(false)
-  }
-
-  const renderSelectedPrivacy = useMemo(() => {
-    return (
-      <Fragment>
-        <Typography>
-          {selectedPrivacy.icon}
-          {selectedPrivacy.type}
-        </Typography>
-      </Fragment>
-    )
-  }, [selectedPrivacy])
-
-  const renderOptions = useMemo(() => {
-    return (
-      <Fragment>
-        <Typography>Who is able to view this?</Typography>
-        {privacyList.map((item) => (
-          <List className={classes.listRoot} key={item.type}>
-            <ListItem key={item.type} button onClick={() => handleItemClick(item)}>
-              <ListItemIcon>{item.type === selectedPrivacy.type ? <CheckIcon /> : null}</ListItemIcon>
-              <IconButton edge="end" aria-label={item.type}>
-                {item.icon}
-              </IconButton>
-              <ListItemText id={`checkbox-list-label-${item.type}`} primary={item.type} />
-            </ListItem>
-          </List>
-        ))}
-      </Fragment>
-    )
-  }, [privacyList, selectedPrivacy])
-
   return (
-    <Paper ref={elementRef} className={classes.root}>
-      <Button
-        className={clsx(classes.iconButton, classes.userIcon)}
-        onClick={() => setDropdownOpen(!isDropdownOpen)}
-        ref={elementRef}
-      >
-        {renderSelectedPrivacy}
-      </Button>
-      {isDropdownOpen ? renderOptions : null}
-    </Paper>
+    <Dropdown
+      classes={classes}
+      optionList={privacyList}
+      initialOption={{
+        type: 'Public',
+        icon: <PublicIcon />,
+        listHeader: <Typography>Who is able to view this?</Typography>,
+      }}
+    />
   )
 }
-
-PrivacyDropdown.propTypes = {}
 
 export default PrivacyDropdown

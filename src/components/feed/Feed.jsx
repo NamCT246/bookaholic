@@ -11,6 +11,7 @@ import Avatar from '@material-ui/core/Avatar'
 const useStyles = makeStyles((theme) => ({
   root: {
     padding: theme.spacing(6),
+    marginTop: theme.spacing(6),
   },
 }))
 const Feed = (props) => {

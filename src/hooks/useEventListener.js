@@ -1,13 +1,15 @@
 import { useEffect } from 'react'
 
-export const useEventListener = (target, eventType, listener, ...rest) => {
-  if (!(target instanceof EventTarget)) {
-    throw new Error('Target element should be type of EventTarget Object')
-  }
-
+const useEventListener = (target, ...args) => {
   useEffect(() => {
-    target.addEventListener(eventType, listener, rest)
+    if (!(target instanceof EventTarget)) {
+      return
+    }
 
-    return target.removeEventListener(eventType, listener)
-  }, [target, eventType, listener, rest])
+    target.addEventListener(...args)
+
+    return () => target.removeEventListener(...args)
+  }, [target, args])
 }
+
+export default useEventListener

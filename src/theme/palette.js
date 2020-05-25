@@ -18,7 +18,7 @@ export default {
     light: colors.indigo[100],
   },
   secondary: {
-    contrastText: white,
+    contrastText: black,
     dark: colors.blue[900],
     main: '#F9AA33',
     light: colors.blue['A400'],
@@ -51,10 +51,6 @@ export default {
     primary: colors.blueGrey[900],
     secondary: colors.blueGrey[600],
     link: colors.blue[600],
-  },
-  background: {
-    default: '#F4F6F8',
-    paper: white,
   },
   icon: colors.blueGrey[600],
   divider: colors.grey[200],

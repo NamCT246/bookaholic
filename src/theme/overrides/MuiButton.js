@@ -6,8 +6,8 @@ export default {
     backgroundColor: palette.primary.main,
     '&:hover': {
       backgroundColor: palette.hover.primary,
-      color: '#FFF',
+      color: palette.primary.contrastText,
     },
-    color: '#FFF',
+    color: palette.primary.contrastText,
   },
 }
