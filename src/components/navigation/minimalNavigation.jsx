@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import IconButton from '@material-ui/core/IconButton'
@@ -84,7 +83,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const MinimalNavigation = (props) => {
+const MinimalNavigation = () => {
   const classes = useStyles()
 
   return (
@@ -130,7 +129,5 @@ const MinimalNavigation = (props) => {
     </div>
   )
 }
-
-MinimalNavigation.propTypes = {}
 
 export default MinimalNavigation

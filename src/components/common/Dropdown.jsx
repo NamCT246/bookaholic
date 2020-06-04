@@ -1,11 +1,11 @@
 import React, { Fragment } from 'react'
+import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/styles'
 import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
 import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemText from '@material-ui/core/ListItemText'
-import IconButton from '@material-ui/core/IconButton'
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown'
 import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp'
 
@@ -117,6 +117,28 @@ const Dropdown = ({
       ) : null}
     </Paper>
   )
+}
+
+Dropdown.propTypes = {
+  classes: PropTypes.object,
+  text: PropTypes.element,
+  textContent: PropTypes.element,
+  before: PropTypes.element,
+  after: PropTypes.element,
+  optionList: PropTypes.arrayOf(
+    PropTypes.shape({
+      type: PropTypes.string,
+      icon: PropTypes.element,
+    })
+  ),
+  initialOption: PropTypes.shape({
+    type: PropTypes.string,
+    icon: PropTypes.element,
+  }),
+  dropdownDisplay: PropTypes.element,
+  listDisplay: PropTypes.element,
+  listHeader: PropTypes.element,
+  eventType: PropTypes.string,
 }
 
 export default withStyles(styles)(Dropdown)

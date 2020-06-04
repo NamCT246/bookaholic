@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { makeStyles } from '@material-ui/core'
 import IconButton from '@material-ui/core/IconButton'
 import AccountCircleSharpIcon from '@material-ui/icons/AccountCircleSharp'
@@ -39,7 +38,7 @@ const dropdownDisplay = (
   </IconButton>
 )
 
-const UserProfileDropdown = (props) => {
+const UserProfileDropdown = () => {
   const classes = useStyles()
 
   return (
@@ -52,7 +51,5 @@ const UserProfileDropdown = (props) => {
     />
   )
 }
-
-UserProfileDropdown.propTypes = {}
 
 export default UserProfileDropdown

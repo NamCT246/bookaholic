@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { makeStyles } from '@material-ui/styles'
 import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
@@ -10,11 +9,12 @@ import Button from '@material-ui/core/Button'
 import ImageIcon from '@material-ui/icons/Image'
 
 import PrivacyDropdown from '../privacyDropdown'
-import { getUsernameFirstLetter } from '../../utils/getUsernameFirstLetter'
+import { getStrFirstLetter } from '../../utils/getStrFirstLetter'
 
 const useStyles = makeStyles((theme) => ({
   root: {
     padding: theme.spacing(6),
+    marginBottom: theme.spacing(6),
   },
   postWrapper: {
     display: 'flex',
@@ -42,7 +42,7 @@ const user = {
   avatar: '/images/cool.jpg',
 }
 
-const CreatePost = (props) => {
+const CreatePost = () => {
   const classes = useStyles()
 
   return (
@@ -51,7 +51,7 @@ const CreatePost = (props) => {
       <Divider />
       <Paper className={classes.postWrapper} elevation={0}>
         <Avatar alt={user.name} src={user.avatar} className={classes.orange}>
-          {getUsernameFirstLetter(user.name)}
+          {getStrFirstLetter(user.name)}
         </Avatar>
         <InputBase
           placeholder={`Hey ${user.name}, share a good book can change the world`}
